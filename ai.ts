@@ -1,0 +1,108 @@
+import { MemoryVectorStore } from "langchain/vectorstores/memory";
+import { OllamaEmbeddings } from "@langchain/community/embeddings/ollama";
+import { Ollama } from "@langchain/community/llms/ollama";
+import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
+import { createRetrievalChain } from "langchain/chains/retrieval";
+import { createStuffDocumentsChain } from "langchain/chains/combine_documents";
+import { ChatPromptTemplate } from "@langchain/core/prompts";
+import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
+import {
+  type Runnable,
+  type RunnableInterface,
+} from "@langchain/core/runnables";
+import type { BaseMessage } from "@langchain/core/messages";
+import type { DocumentInterface, Document } from "@langchain/core/documents";
+import { RunnableSequence } from "@langchain/core/runnables";
+
+type rag = Runnable<
+  {
+    input: string;
+    chat_history?: BaseMessage[] | string;
+  } & {
+    [key: string]: unknown;
+  },
+  {
+    context: Document[];
+    answer: any;
+  } & {
+    [key: string]: unknown;
+  }
+>;
+
+type docsChain = RunnableSequence<Record<string, unknown>, Exclude<any, Error>>;
+
+
+const systemTemplate = [
+  `You are an assistant for question-answering tasks. `,
+  `Use the following pieces of retrieved context to answer `,
+  `the question. If you don't know the answer, say that you `,
+  `don't know. Use three sentences maximum and keep the `,
+  `answer concise.`,
+  `Responde en español`,
+  `\n\n`,
+  `{context}`,
+].join("");
+
+const prompt = ChatPromptTemplate.fromMessages([
+  ["system", systemTemplate],
+  ["human", "{input}"],
+]);
+
+export class AI {
+  private store: MemoryVectorStore;
+  private rag: rag;
+  private docsChain: docsChain;
+
+  constructor(store: MemoryVectorStore, rag: rag, docsChain: docsChain) {
+    this.store = store;
+    this.rag = rag;
+    this.docsChain = docsChain;
+  }
+
+  public static async create({ llmModel, embedModel }) {
+    const llm = new Ollama({
+      model: llmModel,
+    });
+    const store = new MemoryVectorStore(
+      new OllamaEmbeddings({
+        model: embedModel,
+      })
+    );
+
+    const docsChain = await createStuffDocumentsChain({ llm, prompt });
+    const rag = await createRetrievalChain({
+      retriever: store.asRetriever(),
+      combineDocsChain: docsChain,
+    });
+
+    return new AI(store, rag, docsChain);
+  }
+
+  public async storePDFs(paths: string[]) {
+    const textSplitter = new RecursiveCharacterTextSplitter({
+      chunkSize: 1000,
+      chunkOverlap: 200,
+    });
+
+    for (let i = 0; i < paths.length; i++) {
+      const path = paths[i];
+      const loader = new PDFLoader(path);
+      const docs = await loader.load();
+      const splits = await textSplitter.splitDocuments(docs);
+      await this.store.addDocuments(splits);
+    }
+
+    this.rag = await createRetrievalChain({
+      retriever: this.store.asRetriever(),
+      combineDocsChain: this.docsChain,
+    });
+  }
+
+  public async ask(input: string) {
+    const results = await this.rag.invoke({
+      input,
+    });
+
+    return results;
+  }
+}
