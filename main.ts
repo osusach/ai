@@ -1,9 +1,8 @@
 import "pdf-parse";
-import ollama from "ollama";
+import { AI } from "./ai";
 import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
 import { Ollama } from "@langchain/community/llms/ollama";
 import { MemoryVectorStore } from "langchain/vectorstores/memory";
-import { OpenAIEmbeddings } from "@langchain/openai";
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 import { createRetrievalChain } from "langchain/chains/retrieval";
 import { createStuffDocumentsChain } from "langchain/chains/combine_documents";
@@ -11,7 +10,31 @@ import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { OllamaEmbeddings } from "@langchain/community/embeddings/ollama";
 
 async function main() {
-  const loader = new PDFLoader("./files/uct_artes.pdf");
+  const ai = await AI.create({
+    llmModel: "llama3",
+    embedModel: "mxbai-embed-large",
+  });
+
+  let result = await ai.ask(
+    "La carrera de artes tiene materias de religion en la Universidad Catolica de Temuco?"
+  );
+
+  console.log('\x1b[33m%s\x1b[0m', result.answer);
+
+  await ai.storePDFs([
+    "./files/uct_artes.pdf",
+  ]);
+
+  result = await ai.ask(
+    "La carrera de artes tiene materias de religion en la Universidad Catolica de Temuco?"
+  );
+
+  console.log('\x1b[36m%s\x1b[0m', result.answer);
+
+  
+
+
+  const loader = new PDFLoader("./files/Usach-Ing-Civil-Informática-2022.pdf");
 
   const docs = await loader.load();
 
@@ -74,7 +97,7 @@ async function main() {
   });
 
   const results = await ragChain.invoke({
-    input: "La carrera de artes tiene materias de religion en la UCT?",
+    input: "La carrera de artes tiene materias de religion en la Universidad Catolica de Temuco?",
   });
 
   console.log(results);
