@@ -1,4 +1,4 @@
-import "pdf-parse";
+import { createInterface } from "node:readline";
 import { AI } from "./ai";
 
 async function main() {
@@ -7,21 +7,31 @@ async function main() {
     embedModel: "mxbai-embed-large",
   });
 
-  let result = await ai.ask(
-    "La carrera de artes tiene materias de religion en la Universidad Catolica de Temuco?"
-  );
+  await ai.storePDFs(["./files"]);
 
-  console.log('\x1b[33m%s\x1b[0m', result.answer);
+  const rl = createInterface({
+    input: process.stdin,
+    output: process.stdout,
+    prompt: "> ",
+  });
 
-  await ai.storePDFs([
-    "./files/uct_artes.md",
-  ]);
+  let input: string | null = "";
+  console.log("Escribe 'salir' para terminar el chat.");
+  rl.prompt();
+  rl.on("line", async (input) => {
+    if (input.toLowerCase() === "salir") {
+      console.log("Adiós!");
+      rl.close();
+      return;
+    }
 
-  result = await ai.ask(
-    "La carrera de artes tiene materias de religion en la Universidad Catolica de Temuco?"
-  );
+    const result = await ai.ask(input);
+    console.log("\x1b[36m%s\x1b[0m", result.answer);
 
-  console.log('\x1b[36m%s\x1b[0m', result.answer);
+    rl.prompt();
+  }).on("close", () => {
+    process.exit(0);
+  });
 }
 
 main().catch(console.error);

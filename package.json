@@ -1,15 +1,18 @@
 {
 	"scripts": {
-		"dev": "tsx main.ts"
+		"dev": "tsx main.ts",
+		"parse": "tsx parse.ts"
 	},
 	"dependencies": {
-		"@langchain/community": "^0.2.19",
-		"@langchain/core": "^0.2.17",
-		"@langchain/openai": "^0.2.4",
+		"@langchain/community": "^0.2.20",
+		"@langchain/core": "^0.2.18",
 		"@langchain/textsplitters": "^0.0.3",
+		"@types/node": "^20.14.11",
+		"dotenv": "^16.4.5",
 		"langchain": "^0.2.10",
-		"ollama": "^0.5.2",
+		"llamaindex": "^0.5.7",
 		"pdf-parse": "^1.1.1",
-		"tsx": "^4.16.2"
+		"tsx": "^4.16.2",
+		"typescript": "^5.5.4"
 	}
 }

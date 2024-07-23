@@ -5,7 +5,7 @@ import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 import { createRetrievalChain } from "langchain/chains/retrieval";
 import { createStuffDocumentsChain } from "langchain/chains/combine_documents";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
-import { UnstructuredLoader } from "@langchain/community/document_loaders/fs/unstructured";
+import { TextLoader } from "langchain/document_loaders/fs/text";
 import {
   type Runnable,
   type RunnableInterface,
@@ -13,6 +13,10 @@ import {
 import type { BaseMessage } from "@langchain/core/messages";
 import type { DocumentInterface, Document } from "@langchain/core/documents";
 import { RunnableSequence } from "@langchain/core/runnables";
+import { UnstructuredLoader } from "@langchain/community/document_loaders/fs/unstructured";
+import { DirectoryLoader } from "langchain/document_loaders/fs/directory";
+import "dotenv/config";
+import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
 
 type rag = Runnable<
   {
@@ -77,6 +81,10 @@ export class AI {
     return new AI(store, rag, docsChain);
   }
 
+  /**
+   * 
+   * @param paths FOLDER PATH, NOT FILE PATH
+   */
   public async storePDFs(paths: string[]) {
     const textSplitter = new RecursiveCharacterTextSplitter({
       chunkSize: 1000,
@@ -84,12 +92,21 @@ export class AI {
     });
 
     for (let i = 0; i < paths.length; i++) {
+      
       const path = paths[i];
-      const loader = new UnstructuredLoader(path, {
-        apiKey: process.env.MD_API,
-        apiUrl: process.env.MD_URL,
-        chunkingStrategy: "by_title",
-      });
+      const loader = new DirectoryLoader(
+        path,
+        {
+          ".txt": (path) => new TextLoader(path),
+          ".pdf": (path) => new PDFLoader(path),
+          ".md": (path) => new UnstructuredLoader(path, {
+            apiKey: process.env.MD_API,
+            apiUrl: process.env.MD_URL,
+            chunkingStrategy: "by_title",
+          }),
+        }
+      );
+      
       const docs = await loader.load();
       
       const splits = await textSplitter.splitDocuments(docs);
