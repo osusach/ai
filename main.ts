@@ -14,7 +14,7 @@ async function main() {
   console.log('\x1b[33m%s\x1b[0m', result.answer);
 
   await ai.storePDFs([
-    "./files/uct_artes.pdf",
+    "./files/uct_artes.md",
   ]);
 
   result = await ai.ask(

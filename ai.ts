@@ -5,7 +5,7 @@ import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 import { createRetrievalChain } from "langchain/chains/retrieval";
 import { createStuffDocumentsChain } from "langchain/chains/combine_documents";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
-import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
+import { UnstructuredLoader } from "@langchain/community/document_loaders/fs/unstructured";
 import {
   type Runnable,
   type RunnableInterface,
@@ -30,7 +30,6 @@ type rag = Runnable<
 >;
 
 type docsChain = RunnableSequence<Record<string, unknown>, Exclude<any, Error>>;
-
 
 const systemTemplate = [
   `You are an assistant for question-answering tasks. `,
@@ -86,8 +85,13 @@ export class AI {
 
     for (let i = 0; i < paths.length; i++) {
       const path = paths[i];
-      const loader = new PDFLoader(path);
+      const loader = new UnstructuredLoader(path, {
+        apiKey: process.env.MD_API,
+        apiUrl: process.env.MD_URL,
+        chunkingStrategy: "by_title",
+      });
       const docs = await loader.load();
+      
       const splits = await textSplitter.splitDocuments(docs);
       await this.store.addDocuments(splits);
     }
