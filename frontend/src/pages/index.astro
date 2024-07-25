@@ -1,0 +1,73 @@
+---
+import App from "../components/App.tsx";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body>
+    <App client:load />
+  </body>
+
+  <style is:global>
+    body {
+      background: #008080;
+    }
+    .wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: teal;
+    }
+    .window-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .close-icon {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin-left: -1px;
+      margin-top: -1px;
+      transform: rotateZ(45deg);
+      position: relative;
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+      }
+      &:before {
+        height: 100%;
+        width: 3px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      &:after {
+        height: 3px;
+        width: 100%;
+        left: 0px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+    .window {
+      min-height: 200px;
+      margin-top: 3.5rem;
+      padding: 3.5rem;
+    }
+    .footer {
+      display: block;
+      margin: 0.25rem;
+      height: 31px;
+      line-height: 31px;
+      padding-left: 0.25rem;
+    }
+  </style>
+</html>
