@@ -1,0 +1,81 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cqdhvm38kqllttmo7vn0",
+    "operations": [
+      {
+        "create_table": {
+          "name": "tag-to-image",
+          "columns": [
+            {
+              "name": "image",
+              "type": "text",
+              "comment": "{\"xata.link\":\"image\"}",
+              "references": {
+                "name": "fk_image",
+                "table": "image",
+                "column": "xata_id"
+              }
+            },
+            {
+              "name": "tag",
+              "type": "text",
+              "comment": "{\"xata.link\":\"tag\"}",
+              "references": {
+                "name": "fk_tag",
+                "table": "tag",
+                "column": "xata_id"
+              }
+            },
+            {
+              "name": "xata_id",
+              "type": "text",
+              "check": {
+                "name": "tag-to-image_xata_id_length_xata_id",
+                "constraint": "length(\"xata_id\") < 256"
+              },
+              "unique": true,
+              "default": "'rec_' || xata_private.xid()",
+              "nullable": false
+            },
+            {
+              "name": "xata_version",
+              "type": "integer",
+              "default": "0",
+              "nullable": false
+            },
+            {
+              "name": "xata_createdat",
+              "type": "timestamptz",
+              "default": "now()",
+              "nullable": false
+            },
+            {
+              "name": "xata_updatedat",
+              "type": "timestamptz",
+              "default": "now()",
+              "nullable": false
+            }
+          ]
+        }
+      },
+      {
+        "sql": {
+          "up": "ALTER TABLE \"tag-to-image\" REPLICA IDENTITY FULL",
+          "onComplete": true
+        }
+      },
+      {
+        "sql": {
+          "up": "CREATE TRIGGER xata_maintain_metadata_trigger_pgroll\n  BEFORE INSERT OR UPDATE\n  ON \"tag-to-image\"\n  FOR EACH ROW\n  EXECUTE FUNCTION xata_private.maintain_metadata_trigger_pgroll()",
+          "onComplete": true
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cqdhvm38kqllttmo7vn0",
+  "parent": "mig_cqdhvljoougvctosnr3g",
+  "schema": "public",
+  "startedAt": "2024-07-20T02:24:25.58477Z"
+}

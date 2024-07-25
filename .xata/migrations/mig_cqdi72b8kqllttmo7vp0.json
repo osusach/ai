@@ -1,0 +1,18 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cqdi72b8kqllttmo7vp0",
+    "operations": [
+      {
+        "drop_table": {
+          "name": "tag-to-image"
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cqdi72b8kqllttmo7vp0",
+  "parent": "mig_cqdhvm38kqllttmo7vn0",
+  "schema": "public",
+  "startedAt": "2024-07-20T02:40:09.516691Z"
+}

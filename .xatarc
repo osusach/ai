@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Ren-C-ceres-s-workspace-s4shut.us-east-1.xata.sh/db/rag",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}

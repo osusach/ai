@@ -1,65 +1,34 @@
-import "pdf-parse";
-import ollama from "ollama";
-import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
-import { Ollama } from "@langchain/community/llms/ollama";
 import { MemoryVectorStore } from "langchain/vectorstores/memory";
-import { OpenAIEmbeddings } from "@langchain/openai";
-import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
+import { ChatOpenAI, OpenAI } from "@langchain/openai";
 import { createRetrievalChain } from "langchain/chains/retrieval";
 import { createStuffDocumentsChain } from "langchain/chains/combine_documents";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { OllamaEmbeddings } from "@langchain/community/embeddings/ollama";
+import { pdfPipe } from "./lib/pipe";
 
 async function main() {
-  const loader = new PDFLoader("./files/uct_artes.pdf");
-
-  const docs = await loader.load();
-
-  // console.log(docs[0].pageContent.slice(0, 100));
-  // console.log(docs[0].metadata);
-
-  const llm = new Ollama({
-    model: "llama3"
+  const llm = new ChatOpenAI({
+    model: "gpt-4o-mini",
+    apiKey: process.env.OPENAI_API_KEY,
   });
+  const embed = new OllamaEmbeddings({ model: "mxbai-embed-large" });
+  const chunks = await pdfPipe({ path: "./files/uct_artes.pdf" });
+  const vectorstore = await MemoryVectorStore.fromDocuments(chunks, embed);
 
-  // Ejemplo de prompt simple:
-
-  // const stream = await llm.stream(
-  //   `Translate "I love programming" into German.`
-  // );
-
-  // const chunks: string[] = [];
-  // for await (const chunk of stream) {
-  //   chunks.push(chunk);
-  // }
-
-  // console.log(chunks.join(""));
-
-  const textSplitter = new RecursiveCharacterTextSplitter({
-    chunkSize: 1000,
-    chunkOverlap: 200,
+  const retriever = vectorstore.asRetriever({
+    k: 3,
   });
-
-  const splits = await textSplitter.splitDocuments(docs);
-
-  const vectorstore = await MemoryVectorStore.fromDocuments(
-    splits,
-    new OllamaEmbeddings({
-      model: "nomic-embed-text",
-    })
-  );
-
-  const retriever = vectorstore.asRetriever();
 
   const systemTemplate = [
-    `You are an assistant for question-answering tasks. `,
-    `Use the following pieces of retrieved context to answer `,
-    `the question. If you don't know the answer, say that you `,
-    `don't know. Use three sentences maximum and keep the `,
-    `answer concise.`,
-    `Responde en español`,
-    `\n\n`,
-    `{context}`,
+    "Eres un asistente para estudiantes con aspiracion de entrar a la universidad en Chile.",
+    "La información del contexto es la siguiente.",
+    "---------------------",
+    "{context}",
+    "---------------------",
+    "Dada la información del contexto y sin conocimientos previos, responde a la consulta.",
+    "No des tu opinión personal.",
+    "Responde de manera concisa.",
+    "Asume que los cursos/ramos son obligatorios de tomar si se presenta una malla escolar.",
   ].join("");
 
   const prompt = ChatPromptTemplate.fromMessages([
@@ -76,7 +45,6 @@ async function main() {
   const results = await ragChain.invoke({
     input: "La carrera de artes tiene materias de religion en la UCT?",
   });
-
   console.log(results);
 }
 
