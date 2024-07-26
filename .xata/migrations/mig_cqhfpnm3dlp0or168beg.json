@@ -1,0 +1,19 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cqhfpnm3dlp0or168beg",
+    "operations": [
+      {
+        "drop_column": {
+          "table": "becas_usach",
+          "column": "embedding"
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cqhfpnm3dlp0or168beg",
+  "parent": "mig_cqhfpaj45f2rpe31gqog",
+  "schema": "public",
+  "startedAt": "2024-07-26T01:33:18.780742Z"
+}

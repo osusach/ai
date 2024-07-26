@@ -4,7 +4,7 @@ import { createRetrievalChain } from "langchain/chains/retrieval";
 import { createStuffDocumentsChain } from "langchain/chains/combine_documents";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { OllamaEmbeddings } from "@langchain/community/embeddings/ollama";
-import { pdfPipe } from "./lib/pipe";
+import { pdfPipe } from "./src/pipe";
 
 async function main() {
   const llm = new ChatOpenAI({

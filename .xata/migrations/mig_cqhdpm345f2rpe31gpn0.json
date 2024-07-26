@@ -1,0 +1,20 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cqhdpm345f2rpe31gpn0",
+    "operations": [
+      {
+        "rename_constraint": {
+          "to": "becas_usach_xata_vector_length_embedding",
+          "from": "usachScholarships_xata_vector_length_embedding",
+          "table": "becas_usach"
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cqhdpm345f2rpe31gpn0",
+  "parent": "mig_cqhdpl63dlp0or168a30",
+  "schema": "public",
+  "startedAt": "2024-07-25T23:16:41.487671Z"
+}

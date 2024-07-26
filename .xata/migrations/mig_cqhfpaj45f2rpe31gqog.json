@@ -1,0 +1,30 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cqhfpaj45f2rpe31gqog",
+    "operations": [
+      {
+        "add_column": {
+          "table": "becas_usach",
+          "column": {
+            "pk": false,
+            "name": "source",
+            "type": "text",
+            "check": {
+              "name": "becas_usach_xata_string_length_source",
+              "constraint": "LENGTH(\"source\") <= 2048"
+            },
+            "unique": false,
+            "comment": "{\"xata.type\":\"string\"}",
+            "nullable": true
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cqhfpaj45f2rpe31gqog",
+  "parent": "mig_cqhfoo345f2rpe31gqng",
+  "schema": "public",
+  "startedAt": "2024-07-26T01:32:26.620083Z"
+}

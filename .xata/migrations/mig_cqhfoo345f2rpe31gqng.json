@@ -1,0 +1,30 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cqhfoo345f2rpe31gqng",
+    "operations": [
+      {
+        "add_column": {
+          "table": "becas_usach",
+          "column": {
+            "pk": false,
+            "name": "university",
+            "type": "text",
+            "check": {
+              "name": "becas_usach_xata_string_length_university",
+              "constraint": "LENGTH(\"university\") <= 2048"
+            },
+            "unique": false,
+            "comment": "{\"xata.type\":\"string\"}",
+            "nullable": true
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cqhfoo345f2rpe31gqng",
+  "parent": "mig_cqhe4le3dlp0or168a70",
+  "schema": "public",
+  "startedAt": "2024-07-26T01:31:12.5186Z"
+}

@@ -1,0 +1,19 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cqhfq8j45f2rpe31gqq0",
+    "operations": [
+      {
+        "rename_table": {
+          "to": "scholarships",
+          "from": "becas_usach"
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cqhfq8j45f2rpe31gqq0",
+  "parent": "mig_cqhfq50ihk4ub131mfq0",
+  "schema": "public",
+  "startedAt": "2024-07-26T01:34:27.032517Z"
+}

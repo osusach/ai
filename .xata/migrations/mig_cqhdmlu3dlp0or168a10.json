@@ -1,0 +1,30 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cqhdmlu3dlp0or168a10",
+    "operations": [
+      {
+        "add_column": {
+          "table": "usachScholarships",
+          "column": {
+            "pk": false,
+            "name": "embedding",
+            "type": "real[]",
+            "check": {
+              "name": "usachScholarships_xata_vector_length_embedding",
+              "constraint": "ARRAY_LENGTH(\"embedding\", 1) = 512"
+            },
+            "unique": false,
+            "comment": "{\"xata.search.dimension\":512}",
+            "nullable": true
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cqhdmlu3dlp0or168a10",
+  "parent": "mig_cqhdli8ihk4ub131melg",
+  "schema": "public",
+  "startedAt": "2024-07-25T23:10:16.068596Z"
+}

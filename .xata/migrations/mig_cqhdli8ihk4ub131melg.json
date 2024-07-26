@@ -1,0 +1,61 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cqhdli8ihk4ub131melg",
+    "operations": [
+      {
+        "create_table": {
+          "name": "usachScholarships",
+          "columns": [
+            {
+              "name": "xata_version",
+              "type": "integer",
+              "default": "0",
+              "nullable": false
+            },
+            {
+              "name": "xata_createdat",
+              "type": "timestamptz",
+              "default": "now()",
+              "nullable": false
+            },
+            {
+              "name": "xata_updatedat",
+              "type": "timestamptz",
+              "default": "now()",
+              "nullable": false
+            },
+            {
+              "name": "xata_id",
+              "type": "text",
+              "check": {
+                "name": "usachScholarships_xata_id_length_xata_id",
+                "constraint": "length(\"xata_id\") < 256"
+              },
+              "unique": true,
+              "default": "'rec_' || xata_private.xid()",
+              "nullable": false
+            }
+          ]
+        }
+      },
+      {
+        "sql": {
+          "up": "ALTER TABLE \"usachScholarships\" REPLICA IDENTITY FULL",
+          "onComplete": true
+        }
+      },
+      {
+        "sql": {
+          "up": "CREATE TRIGGER xata_maintain_metadata_trigger_pgroll\n  BEFORE INSERT OR UPDATE\n  ON \"usachScholarships\"\n  FOR EACH ROW\n  EXECUTE FUNCTION xata_private.maintain_metadata_trigger_pgroll()",
+          "onComplete": true
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cqhdli8ihk4ub131melg",
+  "parent": "mig_cqdi8njoougvctosnrh0",
+  "schema": "public",
+  "startedAt": "2024-07-25T23:07:53.504769Z"
+}

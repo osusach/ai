@@ -1,0 +1,41 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cqhfq9j45f2rpe31gqr0",
+    "operations": [
+      {
+        "rename_constraint": {
+          "to": "scholarships_xata_string_length_source",
+          "from": "becas_usach_xata_string_length_source",
+          "table": "scholarships"
+        }
+      },
+      {
+        "rename_constraint": {
+          "to": "scholarships_xata_string_length_university",
+          "from": "becas_usach_xata_string_length_university",
+          "table": "scholarships"
+        }
+      },
+      {
+        "rename_constraint": {
+          "to": "scholarships_xata_text_length_content",
+          "from": "becas_usach_xata_text_length_content",
+          "table": "scholarships"
+        }
+      },
+      {
+        "rename_constraint": {
+          "to": "scholarships_xata_vector_length_embedding",
+          "from": "becas_usach_xata_vector_length_embedding",
+          "table": "scholarships"
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cqhfq9j45f2rpe31gqr0",
+  "parent": "mig_cqhfq8j45f2rpe31gqq0",
+  "schema": "public",
+  "startedAt": "2024-07-26T01:34:31.042351Z"
+}

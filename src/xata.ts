@@ -5,8 +5,6 @@ import type {
   SchemaInference,
   XataRecord,
 } from "@xata.io/client";
-import dotenv from "dotenv";
-dotenv.config();
 
 const tables = [
   {
@@ -87,6 +85,110 @@ const tables = [
       },
     ],
   },
+  {
+    name: "scholarships",
+    checkConstraints: {
+      scholarships_xata_string_length_source: {
+        name: "scholarships_xata_string_length_source",
+        columns: ["source"],
+        definition: "CHECK ((length(source) <= 2048))",
+      },
+      scholarships_xata_string_length_university: {
+        name: "scholarships_xata_string_length_university",
+        columns: ["university"],
+        definition: "CHECK ((length(university) <= 2048))",
+      },
+      scholarships_xata_text_length_content: {
+        name: "scholarships_xata_text_length_content",
+        columns: ["content"],
+        definition: "CHECK ((octet_length(content) <= 204800))",
+      },
+      scholarships_xata_vector_length_embedding: {
+        name: "scholarships_xata_vector_length_embedding",
+        columns: ["embedding"],
+        definition: "CHECK ((array_length(embedding, 1) = 1024))",
+      },
+      usachScholarships_xata_id_length_xata_id: {
+        name: "usachScholarships_xata_id_length_xata_id",
+        columns: ["xata_id"],
+        definition: "CHECK ((length(xata_id) < 256))",
+      },
+    },
+    foreignKeys: {},
+    primaryKey: [],
+    uniqueConstraints: {
+      _pgroll_new_usachScholarships_xata_id_key: {
+        name: "_pgroll_new_usachScholarships_xata_id_key",
+        columns: ["xata_id"],
+      },
+    },
+    columns: [
+      {
+        name: "content",
+        type: "text",
+        notNull: false,
+        unique: false,
+        defaultValue: null,
+        comment: '{"xata.type":"text"}',
+      },
+      {
+        name: "embedding",
+        type: "vector",
+        notNull: false,
+        unique: false,
+        defaultValue: null,
+        comment: '{"xata.search.dimension":1024}',
+      },
+      {
+        name: "source",
+        type: "string",
+        notNull: false,
+        unique: false,
+        defaultValue: null,
+        comment: '{"xata.type":"string"}',
+      },
+      {
+        name: "university",
+        type: "string",
+        notNull: false,
+        unique: false,
+        defaultValue: null,
+        comment: '{"xata.type":"string"}',
+      },
+      {
+        name: "xata_createdat",
+        type: "datetime",
+        notNull: true,
+        unique: false,
+        defaultValue: "now()",
+        comment: "",
+      },
+      {
+        name: "xata_id",
+        type: "text",
+        notNull: true,
+        unique: true,
+        defaultValue: "('rec_'::text || (xata_private.xid())::text)",
+        comment: "",
+      },
+      {
+        name: "xata_updatedat",
+        type: "datetime",
+        notNull: true,
+        unique: false,
+        defaultValue: "now()",
+        comment: "",
+      },
+      {
+        name: "xata_version",
+        type: "int",
+        notNull: true,
+        unique: false,
+        defaultValue: "0",
+        comment: "",
+      },
+    ],
+  },
 ] as const;
 
 export type SchemaTables = typeof tables;
@@ -95,8 +197,12 @@ export type InferredTypes = SchemaInference<SchemaTables>;
 export type Ai = InferredTypes["ai"];
 export type AiRecord = Ai & XataRecord;
 
+export type Scholarships = InferredTypes["scholarships"];
+export type ScholarshipsRecord = Scholarships & XataRecord;
+
 export type DatabaseSchema = {
   ai: AiRecord;
+  scholarships: ScholarshipsRecord;
 };
 
 const DatabaseClient = buildClient();
