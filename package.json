@@ -15,5 +15,10 @@
 		"patch-package": "^8.0.0",
 		"pdf-parse": "^1.1.1",
 		"tsx": "^4.16.2"
+	},
+	"pnpm": {
+		"patchedDependencies": {
+			"@langchain/community@0.2.20": "patches/@langchain__community@0.2.20.patch"
+		}
 	}
 }

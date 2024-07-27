@@ -4,22 +4,27 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@langchain/community@0.2.20':
+    hash: s6zretxmwfcm2izjobngrho4ju
+    path: patches/@langchain__community@0.2.20.patch
+
 importers:
 
   .:
     dependencies:
       '@langchain/community':
         specifier: ^0.2.20
-        version: 0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1)
+        version: 0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1)
       '@langchain/core':
         specifier: ^0.2.18
-        version: 0.2.18(langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)
+        version: 0.2.18(langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)
       '@langchain/openai':
         specifier: ^0.2.5
-        version: 0.2.5(langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))
+        version: 0.2.5(langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))
       '@langchain/textsplitters':
         specifier: ^0.0.3
-        version: 0.0.3(langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)
+        version: 0.0.3(langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)
       '@xata.io/client':
         specifier: 0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9
         version: 0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4)
@@ -28,7 +33,7 @@ importers:
         version: 16.4.5
       langchain:
         specifier: ^0.2.11
-        version: 0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1)
+        version: 0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1)
       ollama:
         specifier: ^0.5.6
         version: 0.5.6
@@ -1350,16 +1355,16 @@ snapshots:
   '@esbuild/win32-x64@0.21.5':
     optional: true
 
-  '@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1)':
+  '@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1)':
     dependencies:
-      '@langchain/core': 0.2.18(langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)
-      '@langchain/openai': 0.2.5(langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))
+      '@langchain/core': 0.2.18(langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)
+      '@langchain/openai': 0.2.5(langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))
       binary-extensions: 2.3.0
       expr-eval: 2.0.2
       flat: 5.0.2
       js-yaml: 4.1.0
-      langchain: 0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1)
-      langsmith: 0.1.39(@langchain/core@0.2.18(langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0))(langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)
+      langchain: 0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1)
+      langsmith: 0.1.39(@langchain/core@0.2.18(langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0))(langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)
       uuid: 10.0.0
       zod: 3.23.8
       zod-to-json-schema: 3.23.1(zod@3.23.8)
@@ -1385,13 +1390,13 @@ snapshots:
       - peggy
       - pyodide
 
-  '@langchain/core@0.2.18(langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)':
+  '@langchain/core@0.2.18(langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)':
     dependencies:
       ansi-styles: 5.2.0
       camelcase: 6.3.0
       decamelize: 1.2.0
       js-tiktoken: 1.0.12
-      langsmith: 0.1.39(@langchain/core@0.2.18(langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0))(langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)
+      langsmith: 0.1.39(@langchain/core@0.2.18(langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0))(langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)
       ml-distance: 4.0.1
       mustache: 4.2.0
       p-queue: 6.6.2
@@ -1403,9 +1408,9 @@ snapshots:
       - langchain
       - openai
 
-  '@langchain/openai@0.2.5(langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))':
+  '@langchain/openai@0.2.5(langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))':
     dependencies:
-      '@langchain/core': 0.2.18(langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)
+      '@langchain/core': 0.2.18(langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)
       js-tiktoken: 1.0.12
       openai: 4.53.0
       zod: 3.23.8
@@ -1414,9 +1419,9 @@ snapshots:
       - encoding
       - langchain
 
-  '@langchain/textsplitters@0.0.3(langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)':
+  '@langchain/textsplitters@0.0.3(langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)':
     dependencies:
-      '@langchain/core': 0.2.18(langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)
+      '@langchain/core': 0.2.18(langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)
       js-tiktoken: 1.0.12
     transitivePeerDependencies:
       - langchain
@@ -1701,17 +1706,17 @@ snapshots:
     dependencies:
       graceful-fs: 4.2.11
 
-  langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1):
+  langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1):
     dependencies:
-      '@langchain/core': 0.2.18(langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)
-      '@langchain/openai': 0.2.5(langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))
-      '@langchain/textsplitters': 0.0.3(langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)
+      '@langchain/core': 0.2.18(langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)
+      '@langchain/openai': 0.2.5(langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))
+      '@langchain/textsplitters': 0.0.3(langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)
       binary-extensions: 2.3.0
       js-tiktoken: 1.0.12
       js-yaml: 4.1.0
       jsonpointer: 5.0.1
       langchainhub: 0.0.11
-      langsmith: 0.1.39(@langchain/core@0.2.18(langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0))(langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)
+      langsmith: 0.1.39(@langchain/core@0.2.18(langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0))(langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)
       ml-distance: 4.0.1
       openapi-types: 12.1.3
       p-retry: 4.6.2
@@ -1720,7 +1725,7 @@ snapshots:
       zod: 3.23.8
       zod-to-json-schema: 3.23.1(zod@3.23.8)
     optionalDependencies:
-      '@langchain/community': 0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1)
+      '@langchain/community': 0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1)
       '@xata.io/client': 0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4)
       pdf-parse: 1.1.1
     transitivePeerDependencies:
@@ -1729,7 +1734,7 @@ snapshots:
 
   langchainhub@0.0.11: {}
 
-  langsmith@0.1.39(@langchain/core@0.2.18(langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0))(langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0):
+  langsmith@0.1.39(@langchain/core@0.2.18(langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0))(langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0):
     dependencies:
       '@types/uuid': 9.0.8
       commander: 10.0.1
@@ -1737,8 +1742,8 @@ snapshots:
       p-retry: 4.6.2
       uuid: 9.0.1
     optionalDependencies:
-      '@langchain/core': 0.2.18(langchain@0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)
-      langchain: 0.2.11(@langchain/community@0.2.20(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1)
+      '@langchain/core': 0.2.18(langchain@0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(openai@4.53.0)
+      langchain: 0.2.11(@langchain/community@0.2.20(patch_hash=s6zretxmwfcm2izjobngrho4ju)(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1))(@xata.io/client@0.0.0-next.v64f10283eb9a098c575590d3ea17600e350321c9(typescript@5.5.4))(openai@4.53.0)(pdf-parse@1.1.1)
       openai: 4.53.0
 
   micromatch@4.0.7:

@@ -1,0 +1,13 @@
+diff --git a/dist/vectorstores/xata.js b/dist/vectorstores/xata.js
+index a550abb84fe8ea0e5dfe9e0a7449bd502d2dac0e..3e3686aeb3139f3bee6e3bf6520fd4a4c221fc17 100644
+--- a/dist/vectorstores/xata.js
++++ b/dist/vectorstores/xata.js
+@@ -100,7 +100,7 @@ export class XataVectorSearch extends VectorStore {
+                     key !== "xata" &&
+                     key !== "id")),
+             }),
+-            record.xata.score,
++            record.xata ? record.xata.score: record.xata_score,
+         ]) ?? []);
+     }
+ }
