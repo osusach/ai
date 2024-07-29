@@ -47,7 +47,8 @@ async function main() {
     vendorMultimodalApiKey:
       process.env.OPENAI_KEY,
     vendorMultimodalModelName: "openai-gpt-4o-mini",
-    parsingInstruction: "",
+    targetPages: "0",
+    parsingInstruction: "Extract all the information about the university degree, duration, academic degree, professional title, accreditation, description and occupational field. Don't make up information.",
   });
 
   const coursesPass = new LlamaParseReader({
@@ -65,7 +66,16 @@ async function main() {
     "./filesToParse/uct_artes.pdf",
     "./filesToParse/UNIVERSIDAD DE SANTIAGO-Ing-Civil-Informática-2022.pdf",
   ];
-  // parse(infoPass);
+  parse(infoPass, [
+    "./filesToParse/FACARQUI - ARQUITECTURA 2024.pdf",
+    "./filesToParse/FACDERE - DERECHO 2024.pdf",
+    "./filesToParse/FACIMED - ENFERMERIA 2024.pdf",
+    "./filesToParse/FACIMED - MEDICINA 2024.pdf",
+    "./filesToParse/FAE - INGENIERÍA COMERCIAL 2024.pdf",
+    "./filesToParse/FAHU - PERIODISMO 2024.pdf",
+    "./filesToParse/FAHU - PSICOLOGÍA 2024.pdf",
+    "./filesToParse/FING - INGENIERÍA CIVIL EN INFORMÁTICA 2024.pdf"
+  ]);
   // parse(coursesPass, [
   //   "./filesToParse/column_1.png",
   //   "./filesToParse/column_2.png",
@@ -78,7 +88,7 @@ async function main() {
   // parseImages(coursesPass, "./filesToParse/images/medicina_14.png_crop", "MEDICINA UNIVERSIDAD DE SANTIAGO");
   // parseImages(coursesPass, "./filesToParse/images/periodismo_10.png_crop", "PERIODISMO UNIVERSIDAD DE SANTIAGO");
   // parseImages(coursesPass, "./filesToParse/images/psicologia_10.png_crop", "PSICOLOGÍA UNIVERSIDAD DE SANTIAGO");
-  parseImages(coursesPass, "./filesToParse/images/info_11.png_crop", "ING. CIVIL INFORMÁTICA UNIVERSIDAD DE SANTIAGO");
+  //parseImages(coursesPass, "./filesToParse/images/info_11.png_crop", "ING. CIVIL INFORMÁTICA UNIVERSIDAD DE SANTIAGO");
 }
 
 main().catch(console.error);
